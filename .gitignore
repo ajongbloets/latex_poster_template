@@ -6,4 +6,7 @@
 /.idea
 
 # ignore build artifacts
-/build/*
+/build/**
+
+!/build/poster.pdf
+
