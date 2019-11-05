@@ -1,0 +1,34 @@
+% a title
+\posterbox[
+	skin=uTitle, colback=poster_red, colframe=poster_red
+]{
+	name=xtitle, column=1, below=top
+}{ A Title }
+% box with an figure
+\posterbox[
+	skin=uFigure, valign=center,
+	boxed title style={ borderline south={5pt}{0pt}{poster_red}, },
+	adjusted title = { Figure Heading }
+]{
+	name=xA, column=1, below=xtitle
+}{ \includegraphics[width=\textwidth, keepaspectratio]{placeholder} }
+% caption of the figure
+\begin{posterboxenv}{ name=xAc, column=1, below=xA }
+	\captionof{figure}{%
+		\textbf{A label.} With some more information~\cite{Student2019}.
+	}
+	\label{fig:pycultivator}
+\end{posterboxenv}
+% another title
+\posterbox[
+	skin=uTitle, colback=poster_blue, colframe=poster_blue
+]{
+	name = ytitle, column=2, below=top
+}{ Second Title}
+% box with text and heading
+\begin{posterboxenv}[
+	boxed title style={ borderline south={5pt}{0pt}{poster_blue}, },
+	adjusted title = { Block Heading }
+]{ name = yA, column=2, between=ytitle and references}
+	\lipsum
+\end{posterboxenv}

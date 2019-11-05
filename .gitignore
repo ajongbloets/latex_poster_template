@@ -1,0 +1,9 @@
+
+# ignore mac files
+.DS_Store
+
+# ignore pyCharm files
+/.idea
+
+# ignore build artifacts
+/build/*

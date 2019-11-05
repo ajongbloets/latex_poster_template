@@ -1,0 +1,36 @@
+% for multi-column references
+\usepackage{multicol}
+% for fonts
+\usepackage{lmodern}
+\usepackage{amsmath,amssymb}
+% for including figure files
+\usepackage{graphicx}
+% for custom captions
+\usepackage[font=small,labelfont=bf, labelformat=simple]{caption}
+% for proper UTF-8 encoding
+\usepackage[utf8]{inputenc}
+% for multi-lang (not sure if necessary)
+\usepackage[english]{babel}
+% for bibliography generation
+\usepackage[
+	backend=biber,
+	bibencoding=utf8,
+	natbib=true,
+	style=numeric,
+	%sorting=nyt,
+	eprint=false,
+	doi=true,
+	giveninits=true,
+	% restrict number of authors
+	maxbibnames=2
+]{biblatex}
+%
+\usepackage{verbatim}
+% proper quotes with \enquote{quoted text}
+\usepackage{csquotes}
+% cross references (for example to figures)
+\usepackage{cleveref}
+% chemical formula
+\usepackage[version=4]{mhchem}
+% placeholder text
+\usepackage{lipsum}

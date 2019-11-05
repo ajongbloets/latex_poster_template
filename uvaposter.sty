@@ -1,0 +1,353 @@
+% Poster Template using beamerposter and tcolorbox
+% 
+% Adjusted from Markus Latex poster guide (https://github.com/mamueller/Markus-LaTeX-poster-guide)
+%
+% Version: 2019-11-06
+%
+%
+
+\ProvidesPackage{uvaposter}[0.1.0]
+
+%% ----------
+%% Packages
+%% ----------
+
+\RequirePackage{xkeyval}
+\RequirePackage{etoolbox}
+\RequirePackage{tcolorbox}
+
+\tcbuselibrary{poster}
+\tcbuselibrary{skins}
+
+%% ----------
+%% Meta information
+%% ----------
+
+\providecommand*{\insertinstitutelogo}{}
+\newcommand*{\institutelogo}[1]{\renewcommand*{\insertinstitutelogo}{#1}}
+
+\providecommand*{\insertgrantlogo}{}
+\newcommand*{\grantlogo}[1]{\renewcommand*{\insertgrantlogo}{#1}}
+
+% url
+\providecommand*{\insertauthorurl}{}
+\newcommand*{\authorurl}[1]{\renewcommand*{\insertauthorurl}{#1}}
+
+% email
+\providecommand*{\insertauthoremail}{}
+\newcommand*{\authoremail}[1]{\renewcommand*{\insertauthoremail}{#1}}
+
+%% ----------
+%% Define Colors
+%% ----------
+
+\definecolor{poster_red}{HTML}{bc0031}
+\definecolor{poster_blue}{HTML}{0061bc}
+\definecolor{poster_green}{HTML}{029900}
+\definecolor{poster_gray}{HTML}{7a7a7a}
+
+\definecolor{darkgray}{RGB}{181, 181, 181}
+\definecolor{lightgray}{RGB}{248, 248, 248}
+
+%% ----------
+%% Assign Colors to components
+%% ----------
+
+\setbeamercolor{structure}{fg=black}
+\setbeamercolor{headline}{fg=black, bg=white}
+\setbeamercolor{footline}{fg=black, bg=white}
+
+\setbeamercolor{separation line}{bg=darkgray}
+
+%% ----------
+%% Header Style
+%% ----------
+
+\setbeamercolor{title in headline}{fg=black}
+\setbeamerfont{title in headline}{size=\fontsize{60.0pt}{65.0pt}}
+
+\setbeamercolor{author in headline}{fg=black}
+\setbeamerfont{author in headline}{size=\fontsize{32.0pt}{34.0pt}}
+
+\setbeamercolor{institute in headline}{fg=black}
+\setbeamerfont{institute in headline}{size=\fontsize{26.0pt}{26.0pt}}
+
+%% ----------
+%% Footer Style
+%% ----------
+
+\setbeamercolor{text in footline}{fg=black}
+\setbeamerfont{text in footline}{size=\fontsize{25.0pt}{25.0pt}}
+\setbeamercolor{author in footline}{fg=black}
+\setbeamerfont{author in footline}{size=\fontsize{32.0pt}{32.0pt}}
+\setbeamercolor{date in footline}{fg=black}
+\setbeamerfont{date in footline}{size=\fontsize{32.0pt}{32.0pt}}
+
+%% ----------
+%% Poster Style
+%% ----------
+
+\setbeamercolor{title in poster}{fg=black}
+\setbeamerfont{title in poster}{size=\fontsize{40.0pt}{40.0pt}\selectfont}
+
+\setbeamercolor{header in poster}{fg=white}
+\setbeamerfont{header in poster}{size=\fontsize{32.0pt}{32.0pt}\selectfont}
+
+\setbeamercolor{text in poster}{fg=black}
+\setbeamerfont{text in poster}{size=\fontsize{28.0pt}{28.0pt}}
+
+\setbeamercolor{references in poster}{fg=black}
+\setbeamerfont{references in poster}{size=\fontsize{20.0pt}{20.0pt}\selectfont}
+%
+\setbeamercolor{alerted text}{fg=red}
+
+%% -------------
+%% Text and math
+%% -------------
+
+\renewcommand\familydefault{\sfdefault}
+\setlength\parindent{0pt}
+
+%\setbeamertemplate{caption}[numbered]{}
+
+%\defbeamertemplate{itemize item}{bullet}{$\bullet$}
+%\setbeamertemplate{itemize item}[bullet]
+%\defbeamertemplate{itemize subitem}{dash}{--}
+%\setbeamertemplate{itemize subitem}[dash]
+%\setbeamertemplate{enumerate item}[circle]
+
+% no navigation on a poster
+\setbeamertemplate{navigation symbols}{}
+
+%% ----------
+%% Bibliography Style
+%% ----------
+
+\setbeamertemplate{bibliography item}[text]
+\renewcommand*{\bibfont}{\fontsize{20.0pt}{20.0pt}\selectfont}
+
+%% ------
+%% Title Template
+%% ------
+
+\providecommand{\postertitle}{%
+	\usebeamercolor{title in headline}{%
+		\color{fg}{%
+			\usebeamerfont{title in headline}
+			\selectfont
+			\inserttitle
+		}
+	}
+}
+
+
+%% ------
+%% Author Template
+%% ------
+
+\providecommand{\posterauthor}{%
+	\usebeamercolor{author in headline}{%
+		\color{fg}{%
+			\usebeamerfont{author in headline}
+			\selectfont
+			\insertauthor
+		}
+	}
+}
+
+%% ------
+%% Institute Template
+%% ------
+
+\providecommand{\posterinstitute}{%
+	\usebeamercolor{institute in headline}{%
+		\color{fg}{%
+			\usebeamerfont{institute in headline}
+			\selectfont
+			\insertinstitute
+		}
+	}
+}
+
+%% ------
+%% Header Template
+%% ------
+
+\providecommand{\posterheader}{%
+	% offset
+	\hspace{0.02\textwidth}
+	% left panel
+	\begin{minipage}{0.2\textwidth}
+		\centering
+		% uva logo
+		\includegraphics[width=0.5\textwidth, height=0.4\textwidth, keepaspectratio]{\insertinstitutelogo}
+	\end{minipage}
+	\begin{minipage}{0.55\textwidth}
+		\begin{center}
+			% title
+			\postertitle
+
+			\vspace{4ex}
+			% authors
+			\posterauthor
+
+			\vspace{4ex}
+			% institute
+			\posterinstitute
+		\end{center}
+	\end{minipage}
+	% right panel
+	\begin{minipage}{.2\textwidth}
+		\centering
+		% grant logo
+		\includegraphics[width=0.5\textwidth, height=0.4\textwidth, keepaspectratio]{\insertgrantlogo}
+	\end{minipage}
+	% offset
+	\hspace{0.02\textwidth}
+}
+
+%\providecommand{\insertheader}{%
+\setbeamertemplate{headline}{
+	\leavevmode
+
+	\vspace{0.5cm}
+
+	\posterheader
+
+	\vspace{0.5cm}
+
+	\begin{beamercolorbox}[wd=\paperwidth]{lower separation line header}
+		\rule{\textwidth}{2pt}
+	\end{beamercolorbox}
+
+	\vspace{0.5cm}
+}
+
+%% ------
+%% Footer Content Template
+%% ------
+
+\providecommand{\posterfooter}{%
+	\hspace{0.05\textwidth}
+	% left (url)
+	\ifdefempty{\insertauthorurl}{\hspace{0.3\textwidth}}{%
+		\begin{minipage}[c][1cm]{0.3\textwidth}%
+%			\usebeamercolor{author in footline}{%
+%				\color{fg}{%
+%					\usebeamerfont{author in footline}\selectfont
+					\href{\insertauthorurl}{\insertauthorurl}
+%				}
+%			}
+		\end{minipage}
+	}
+	% center (date)
+	\begin{minipage}[c]{0.3\textwidth}
+%		\usebeamercolor{date in footline}{%
+%			\color{fg}{%
+				\begin{center}
+%					\usebeamerfont{date in footline}
+%					\selectfont
+					\insertdate
+				\end{center}
+%			}
+%		}
+	\end{minipage}
+	% right (email)
+	\ifdefempty{\insertauthoremail}{\hspace{0.3\textwidth}}{%
+		\begin{minipage}[c][1cm]{0.3\textwidth}
+%			\usebeamercolor{author in footline}{%
+%				\color{fg}{%
+%					\usebeamerfont{author in footline}
+%					\selectfont
+					\href{mailto:\insertauthoremail}{\insertauthoremail}
+%				}
+%			}
+		\end{minipage}
+	}
+	\hspace{0.05\textwidth}
+}
+
+%% ------
+%% Footer Template
+%% ------
+
+%\providecommand{\insertfooter}{
+\setbeamertemplate{footline}{
+	\leavevmode
+
+	\vspace{0.5cm}
+
+	\begin{beamercolorbox}[wd=\paperwidth]{upper separation line foot}
+		% \rule{\textwidth}{2pt}
+	\end{beamercolorbox}
+
+	\vspace{0.5cm}
+
+	\posterfooter
+
+	\vspace{0.5cm}
+}
+
+%% -------------
+%% Styles
+%% -------------
+
+% Default block of poster
+\tcbsubskin{uBase}{enhanced}{
+	colframe = white, colback = white, coltext=black,
+	no shadow,
+	fonttitle = \usebeamerfont{header in poster},
+	fontupper = \usebeamerfont{text in poster},
+	skin first=uBase, skin middle=uBase, skin last=uBase
+}
+
+% Title block of poster
+\tcbsubskin{uTitle}{uBase}{
+	colframe = poster_red, colback = poster_red, coltext=white,
+	fontupper = \usebeamerfont{title in poster},
+	height = 2.25\baselineskip,
+	halign=center, valign=center,
+	skin first=uTitle, skin middle=uTitle, skin last=uTitle
+}
+
+% Header block of poster
+\tcbsubskin{uHeader}{uBase}{
+	colframe = white, colback = white,
+	blanker,
+	borderline south={5pt}{0pt}{black},
+	fontupper = \usebeamerfont{header in poster},
+	add to natural height=0.5\baselineskip, valign=center,
+	skin first=uHeader, skin middle=uHeader, skin last=uHeader
+}
+
+% Text block (with header as adjusted title) of poster
+\tcbsubskin{uText}{uBase}{
+	colframe = white, colback = white, boxrule=0pt,
+	coltitle = black,
+	attach boxed title to top,
+	boxed title style={
+		skin=uHeader,
+	},
+	fontupper = \usebeamerfont{text in poster},
+	skin first=uText, skin middle=uText, skin last=uText
+}
+
+% Figure block (horizontal center)
+\tcbsubskin{uFigure}{uText}{
+	halign=center,
+	skin first=uFigure, skin middle=uFigure, skin last=uFigure
+}
+
+% Reference block of poster
+\tcbsubskin{uReferences}{uBase}{
+	reset, colback = white,
+	fonttitle = \usebeamerfont{header in poster},
+	fontupper = \usebeamerfont{references in poster},
+	skin first=uReferences, skin middle=uReferences, skin last=uReferences
+}
+
+% Placeholder block of poster
+\tcbsubskin{uEmpty}{uBase}{
+	colframe = white, colback = gray, coltext=black,
+	skin first=uEmpty, skin middle=uEmpty, skin last=uEmpty
+}

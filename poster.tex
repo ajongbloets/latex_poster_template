@@ -1,0 +1,114 @@
+\documentclass[24pt]{beamer}
+
+%% -------------
+%% Packages
+%% -------------
+
+% poster package
+\usepackage[orientation=portrait, size=a0, scale=1.0]{beamerposter}
+% load additional packages
+\input{_packages}
+\input{_tools}
+% load poster package
+\usepackage{uvaposter}
+
+% load additional tcolorbox libraries
+\tcbuselibrary{raster}
+
+%% -------------
+%% Customisation
+%% -------------
+
+% custom format of figure caption
+\captionsetup[figure]{labelfont={bf},name={Fig.},labelsep=period}
+
+% base folder with figures
+\graphicspath{{figures/}}
+
+% bibliography file
+\addbibresource{library.bib}
+
+% make occurence of this author in the bibliography bold
+% matches to P. Student and PhD Student
+\boldname{Student}{PhD}{P.}
+
+%% -------------
+%% Definitions
+%% -------------
+
+\newcommand*{\syn}{\emph{Synechocystis}}
+\newcommand*{\fumc}{\ensuremath{\Delta}\emph{fumC}}
+\newcommand*{\zwf}{\ensuremath{\Delta}\emph{zwf}}
+\newcommand*{\fumczwf}{\fumc\zwf}
+
+%% -------------
+%% Meta Information
+%% -------------
+
+\title{The Title of my Poster}
+
+% format author section
+\author{%
+	\texorpdfstring{%
+		\hspace{0.05\textwidth}
+		\begin{minipage}[c]{0.45\textwidth}
+			\centering
+			PhD Student \\
+			\small \href{mailto:p.student@university.nl}{p.student@university.nl}
+		\end{minipage}
+		\begin{minipage}[c]{0.45\textwidth}
+			\centering
+			S. Cientist \\
+			\small \href{mailto:s.cientist@university.nl}{s.cientist@university.nl}
+		\end{minipage}
+		\hspace{0.01\textwidth}
+	}{P. Student, S. Cientist}%
+}
+
+% set date to ""
+\date{}
+
+%\authorurl{group.university.nl}
+%\authoremail{p.student@university.nl}
+
+\institute{My Group, Some Institute, Very Important University}
+
+\institutelogo{placeholder}
+\grantlogo{placeholder}
+
+%% -------------
+%% Document
+%% -------------
+
+\begin{document}%
+	\begin{frame}[fragile]
+		\begin{tcbposter}[
+			% define poster layout, number of rows/columns
+			poster = {
+				rows=1, columns=2, spacing=0.25cm,
+				% show frame can help with layout issues
+				% showframe
+			},
+			% define base font size (and make everything relative to it)
+			fontsize = 24pt,
+			% define default box style
+			boxes = {skin=uText},
+		]
+			%% -------------
+			%% Content
+			%% -------------
+			% references
+			\begin{posterboxenv}[
+				enhanced, skin=uReferences, colframe=poster_gray,
+				adjusted title={References}
+			]{name=references, column=1, span=3, above=bottom}
+				\noindent
+				\begin{multicols}{2}
+					\printbibliography
+				\end{multicols}
+			\end{posterboxenv}
+			% main content
+			\input{content/main}
+		\end{tcbposter}
+	\end{frame}
+\end{document}
